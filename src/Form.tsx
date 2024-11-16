@@ -44,7 +44,7 @@ export default function Form() {
 
   return (
     <>
-      <div className="form-wrapper relative">
+      <div className="form-wrapper pb-2">
         {isSubmitted && (
           <div className="success-message w-[85vw] max-w-[350px] justify-start rounded-[10px] bg-dark-gray p-4 pl-5 text-white">
             <span className="flex items-center">

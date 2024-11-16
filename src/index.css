@@ -29,7 +29,12 @@ code {
 }
 
 .star {
-  @apply text-medium-green;
+  @apply text-medium-green font-bold;
+}
+
+label,
+legend {
+  @apply text-sm mb-2 text-dark-gray;
 }
 
 #name {
@@ -52,22 +57,32 @@ input[type="radio"] {
   @apply ml-2 accent-medium-green focus:accent-medium-green hover:accent-medium-green active:accent-medium-green;
 }
 
-input[type="radio"]:checked + label + .query-field {
-  @apply bg-light-green;
-}
-
 .query-field:has(input:checked) {
   @apply bg-light-green border-medium-green;
-}
-
-textarea {
-  min-height: 80px;
-  height: auto;
-  overflow: hidden;
 }
 
 input,
 textarea,
 .query-field {
-  @apply border-[1px] border-dark-gray rounded-[6px] p-2 focus:outline-[2px] focus:outline-medium-green;
+  @apply border-[1px] border-medium-gray rounded-[6px] p-2 focus:outline-[2px] focus:outline-medium-green hover:cursor-pointer hover:border-[2px] hover:border-medium-green transition-all ease-in-out duration-150;
+}
+
+.success-message {
+  position: relative;
+  bottom: 100%;
+  top: 0%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-100%);
+  animation: slideIn 0.8s ease-out forwards;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(-50%) translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+  }
 }

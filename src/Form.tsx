@@ -17,6 +17,7 @@ export default function Form() {
     watch,
     formState: { errors },
   } = useForm<Inputs>();
+
   const onSubmit: SubmitHandler<Inputs> = (data: any) => {
     console.log(data);
     setIsSubmitted(true);
@@ -42,35 +43,39 @@ export default function Form() {
 
   return (
     <>
-      {isSubmitted && (
-        <div className="p-4 bg-dark-gray rounded-[10px] text-white w-[25vw] max-w-[350px] m-auto">
-          <span className="flex items-center">
-            {successIcon}
-            <h1 className="text-sm font-bold leading-7">Message Sent!</h1>
-          </span>
-          <p className="text-xs pb-1">
-            Thanks for completing the form. We'll be in touch soon!
-          </p>
-        </div>
-      )}
+      <div className="form-wrapper relative">
+        {isSubmitted && (
+          <div className="success-message w-[85vw] max-w-[350px] justify-start rounded-[10px] bg-dark-gray p-4 pl-5 text-white">
+            <span className="flex items-center">
+              {successIcon}
+              <h1 className="text-sm font-bold leading-7">Message Sent!</h1>
+            </span>
+            <p className="pb-1 text-xs text-light-green">
+              Thanks for completing the form. We'll be in touch soon!
+            </p>
+          </div>
+        )}
 
-      <div className="form-wrapper">
         <form
+          noValidate
           onSubmit={handleSubmit(onSubmit)}
           id="grid-form"
-          className="grid gap-2 bg-white p-6 rounded-[10px]"
+          className="grid gap-2 rounded-[10px] bg-white p-6"
         >
-          <h1 className="text-2xl font-bold mb-2">Contact Us</h1>
+          <h1 className="mb-2 text-2xl font-bold text-dark-gray">Contact Us</h1>
 
           <section id="name">
-            <div id="firsname-div" className="flex flex-col mb-2">
-              <label htmlFor="fname" className="mb-1">
+            <div id="firsname-div" className="mb-2 flex flex-col">
+              <label htmlFor="fname">
                 First Name <span className="star">*</span>
               </label>
               <input
                 {...register("fname", {
-                  required: true,
-                  pattern: /^[A-Za-z\s]+$/,
+                  required: "This field is required",
+                  pattern: {
+                    value: /^[\p{L}\p{M}\s'-]+$/u,
+                    message: "Name must only contain letters",
+                  },
                 })}
                 className={errors.fname && "border-warning-red"}
                 type="text"
@@ -81,19 +86,22 @@ export default function Form() {
               />
               {errors.fname && (
                 <p id="firstname-error" className="error-message">
-                  This field is required
+                  {errors.fname.message}
                 </p>
               )}
             </div>
 
-            <div id="lastname-div" className="flex flex-col mb-2">
-              <label htmlFor="lastname" className="mb-1">
+            <div id="lastname-div" className="mb-2 flex flex-col">
+              <label htmlFor="lastname">
                 Last Name <span className="star">*</span>
               </label>
               <input
                 {...register("lastname", {
-                  required: true,
-                  pattern: /^[A-Za-z\s]+$/,
+                  required: "This field is required",
+                  pattern: {
+                    value: /^[\p{L}\p{M}\s'-]+$/u,
+                    message: "Name must only contain letters",
+                  },
                 })}
                 className={errors.lastname && "border-warning-red"}
                 type="text"
@@ -104,14 +112,14 @@ export default function Form() {
               />
               {errors.lastname && (
                 <p id="lastname-error" className="error-message">
-                  This field is required
+                  {errors.lastname.message}
                 </p>
               )}
             </div>
           </section>
 
-          <section id="email" className="flex flex-col mb-2">
-            <label htmlFor="email" className="mb-1">
+          <section id="email" className="mb-2 flex flex-col">
+            <label htmlFor="email">
               Email Address <span className="star">*</span>
             </label>
             <input
@@ -136,13 +144,14 @@ export default function Form() {
 
           <section id="query" className="mb-2">
             <fieldset>
-              <legend className="mb-1">
+              <legend>
                 Query Type <span className="star">*</span>
               </legend>
               <div className="query-wrapper">
                 <div className="query-field flex items-center">
                   <input
                     {...register("query", { required: true })}
+                    className="cursor-pointer"
                     type="radio"
                     id="general"
                     name="query"
@@ -150,40 +159,42 @@ export default function Form() {
                     aria-describedby="query-error"
                     aria-invalid={errors.query ? "true" : "false"}
                   />
-                  <label htmlFor="general" className="ml-2">
+                  <label htmlFor="general" className="mb-0 ml-2 text-base">
                     General Enquiry
                   </label>
                 </div>
                 <div className="query-field flex items-center">
                   <input
+                    {...register("query")}
+                    className="cursor-pointer"
                     type="radio"
                     id="support"
                     name="query"
                     value="support request"
                   />
-                  <label htmlFor="support" className="ml-2">
+                  <label htmlFor="support" className="mb-0 ml-2 text-base">
                     Support Request
                   </label>
                 </div>
               </div>
               {errors.query && (
-                <p id="query-error" className="flex flex-col error-message">
+                <p id="query-error" className="error-message flex flex-col">
                   Please select a query type
                 </p>
               )}
             </fieldset>
           </section>
 
-          <section id="message" className="flex flex-col mb-2">
-            <label htmlFor="message" className="mb-1">
+          <section id="message" className="mb-2 flex flex-col">
+            <label htmlFor="message">
               Message <span className="star">*</span>
             </label>
             <textarea
               {...register("message", { required: true })}
-              className={`resize-none ${
+              className={`h-36 resize-none overflow-hidden md:h-28 lg:h-24 ${
                 errors.message && "border-warning-red"
               }`}
-              id="message-area"
+              id="message"
               name="message"
               aria-describedby="message-error"
               aria-invalid={errors.message ? "true" : "false"}
@@ -196,10 +207,10 @@ export default function Form() {
           </section>
 
           <section id="finish" className="flex flex-col">
-            <div className="flex items-center mt-3 mb-3">
+            <div className="mb-3 mt-3 flex w-[90%] items-center">
               <input
                 {...register("consent", { required: true })}
-                className="checked:bg-medium-green"
+                className="cursor-pointer checked:accent-medium-green"
                 type="checkbox"
                 id="consent"
                 name="consent"
@@ -207,7 +218,7 @@ export default function Form() {
                 value="consent given"
                 aria-invalid={errors.consent ? "true" : "false"}
               />
-              <label htmlFor="radio" className="ml-3">
+              <label htmlFor="consent" className="mb-0 ml-3">
                 I consent to being contacted by the team{" "}
                 <span className="star">*</span>
               </label>
@@ -225,7 +236,7 @@ export default function Form() {
               id="submit-button"
               name="submit-button"
               value="Submit"
-              className="bg-medium-green text-white font-bold b-none mt-4"
+              className="mt-4 cursor-pointer border-0 bg-medium-green font-bold text-white transition-all duration-150 ease-in-out hover:border-0 hover:bg-dark-gray focus:bg-dark-gray focus:outline-none"
             />
           </section>
         </form>

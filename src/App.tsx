@@ -1,9 +1,9 @@
-import Form from "./Form";
+import Form from "./components/Form";
 
 function App() {
   return (
     <>
-      <div className="flex min-h-[95vh] items-center justify-center">
+      <div className="flex min-h-[95vh] items-center justify-center pt-2">
         <Form />
       </div>
       <footer className="p-2 text-center text-sm">

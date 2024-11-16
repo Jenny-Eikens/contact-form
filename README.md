@@ -36,8 +36,8 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [](https://github.com/Jenny-Eikens/contact-form)
-- Live Site URL: [](https://jenny-eikens.github.io/contact-form/)
+- Solution URL: [Solution URL](https://github.com/Jenny-Eikens/contact-form)
+- Live Site URL: [Live Site URL](https://jenny-eikens.github.io/contact-form/)
 
 ## My process
 

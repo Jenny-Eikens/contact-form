@@ -125,8 +125,11 @@ export default function Form() {
             </label>
             <input
               {...register("email", {
-                required: true,
-                pattern: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
+                required: "This field is required",
+                pattern: {
+                  value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
+                  message: "Please enter a valid email address",
+                },
               })}
               className={errors.email && "border-warning-red"}
               type="email"
@@ -138,7 +141,7 @@ export default function Form() {
             ></input>
             {errors.email && (
               <p id="email-error" className="error-message">
-                Please enter a valid email address
+                {errors.email.message}
               </p>
             )}
           </section>

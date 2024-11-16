@@ -14,13 +14,14 @@ export default function Form() {
   const {
     register,
     handleSubmit,
-    watch,
+    reset,
     formState: { errors },
   } = useForm<Inputs>();
 
   const onSubmit: SubmitHandler<Inputs> = (data: any) => {
     console.log(data);
     setIsSubmitted(true);
+    reset();
   };
 
   const successIcon = (

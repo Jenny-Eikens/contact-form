@@ -22,19 +22,24 @@ code {
     monospace;
 }
 
+.success-message {
+  position: relative;
+  bottom: 100%;
+  top: 0%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-100%);
+  animation: slideIn 0.8s ease-out forwards;
+}
+
 #grid-form {
   min-height: 75vh;
   width: 90vw;
   max-width: 600px;
 }
 
-.star {
-  @apply text-medium-green font-bold;
-}
-
 label,
 legend {
-  @apply text-sm mb-2 text-dark-gray;
+  @apply mb-2 text-sm text-dark-gray;
 }
 
 #name {
@@ -43,37 +48,37 @@ legend {
   grid-template-columns: repeat(auto-fit, minmax(min(180px, 100%), 1fr));
 }
 
+.star {
+  @apply font-bold text-medium-green;
+}
+
 .query-wrapper {
   display: grid;
   gap: 1rem;
   grid-template-columns: repeat(auto-fit, minmax(min(180px, 100%), 1fr));
 }
 
-.error-message {
-  @apply text-warning-red mt-1 text-sm;
+.query-field:has(input:checked) {
+  @apply border-medium-green bg-light-green;
 }
 
 input[type="radio"] {
-  @apply ml-2 accent-medium-green focus:accent-medium-green hover:accent-medium-green active:accent-medium-green;
+  @apply ml-2 accent-medium-green hover:accent-medium-green focus:accent-medium-green active:accent-medium-green;
 }
 
-.query-field:has(input:checked) {
-  @apply bg-light-green border-medium-green;
+input[type="radio"],
+input[type="checkbox"] {
+  @apply scale-125;
 }
 
 input,
 textarea,
 .query-field {
-  @apply border-[1px] border-medium-gray rounded-[6px] p-2 focus:outline-[2px] focus:outline-medium-green hover:cursor-pointer hover:border-[2px] hover:border-medium-green transition-all ease-in-out duration-150;
+  @apply rounded-[6px] border-[1px] border-medium-gray p-2 transition-all duration-150 ease-in-out hover:cursor-pointer hover:border-[2px] hover:border-medium-green focus:outline-[2px] focus:outline-medium-green;
 }
 
-.success-message {
-  position: relative;
-  bottom: 100%;
-  top: 0%;
-  left: 50%;
-  transform: translateX(-50%) translateY(-100%);
-  animation: slideIn 0.8s ease-out forwards;
+.error-message {
+  @apply mt-1 text-sm text-warning-red;
 }
 
 @keyframes slideIn {

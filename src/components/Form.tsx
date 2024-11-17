@@ -61,194 +61,205 @@ export default function Form() {
           </div>
         )}
 
-        <form
-          noValidate
-          onSubmit={handleSubmit(onSubmit)}
-          id="grid-form"
-          className="grid gap-2 rounded-[10px] bg-white p-8"
-        >
-          <h1 className="mb-2 text-3xl font-bold text-dark-gray">Contact Us</h1>
+        <main>
+          <form
+            noValidate
+            onSubmit={handleSubmit(onSubmit)}
+            id="grid-form"
+            className="grid gap-2 rounded-[10px] bg-white p-8"
+          >
+            <h1 className="mb-2 text-3xl font-bold text-dark-gray">
+              Contact Us
+            </h1>
 
-          <section id="name">
-            <div id="firsname-div" className="mb-2 flex flex-col">
-              <label htmlFor="fname">
-                First Name <span className="star">*</span>
-              </label>
-              <input
-                {...register("fname", {
-                  required: "This field is required",
-                  pattern: {
-                    value: /^[\p{L}\p{M}\s'-]+$/u,
-                    message: "Name must only contain letters",
-                  },
-                })}
-                className={errors.fname && "border-warning-red"}
-                type="text"
-                id="fname"
-                name="fname"
-                aria-describedby="firstname-error"
-                aria-invalid={errors.fname ? "true" : "false"}
-                autoFocus
-              />
-              {errors.fname && (
-                <p id="firstname-error" className="error-message">
-                  {errors.fname.message}
-                </p>
-              )}
-            </div>
-
-            <div id="lastname-div" className="mb-2 flex flex-col">
-              <label htmlFor="lastname">
-                Last Name <span className="star">*</span>
-              </label>
-              <input
-                {...register("lastname", {
-                  required: "This field is required",
-                  pattern: {
-                    value: /^[\p{L}\p{M}\s'-]+$/u,
-                    message: "Name must only contain letters",
-                  },
-                })}
-                className={errors.lastname && "border-warning-red"}
-                type="text"
-                id="lastname"
-                name="lastname"
-                aria-describedby="lastname-error"
-                aria-invalid={errors.lastname ? "true" : "false"}
-              />
-              {errors.lastname && (
-                <p id="lastname-error" className="error-message">
-                  {errors.lastname.message}
-                </p>
-              )}
-            </div>
-          </section>
-
-          <section id="email" className="mb-2 flex flex-col">
-            <label htmlFor="email">
-              Email Address <span className="star">*</span>
-            </label>
-            <input
-              {...register("email", {
-                required: "This field is required",
-                pattern: {
-                  value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
-                  message: "Please enter a valid email address",
-                },
-              })}
-              className={errors.email && "border-warning-red"}
-              type="email"
-              id="email"
-              name="email"
-              placeholder="email#example.com"
-              aria-describedby="email-error"
-              aria-invalid={errors.email ? "true" : "false"}
-            ></input>
-            {errors.email && (
-              <p id="email-error" className="error-message">
-                {errors.email.message}
-              </p>
-            )}
-          </section>
-
-          <section id="query" className="mb-2">
-            <fieldset>
-              <legend>
-                Query Type <span className="star">*</span>
-              </legend>
-              <div className="query-wrapper">
-                <div className="query-field flex items-center">
-                  <input
-                    {...register("query", { required: true })}
-                    className="cursor-pointer"
-                    type="radio"
-                    id="general"
-                    name="query"
-                    value="general query"
-                    aria-describedby="query-error"
-                    aria-invalid={errors.query ? "true" : "false"}
-                  />
-                  <label htmlFor="general" className="mb-0 ml-2 text-base">
-                    General Enquiry
-                  </label>
-                </div>
-                <div className="query-field flex items-center">
-                  <input
-                    {...register("query")}
-                    className="cursor-pointer"
-                    type="radio"
-                    id="support"
-                    name="query"
-                    value="support request"
-                  />
-                  <label htmlFor="support" className="mb-0 ml-2 text-base">
-                    Support Request
-                  </label>
-                </div>
+            <div id="name">
+              <div id="firsname-div" className="mb-2 flex flex-col">
+                <label htmlFor="firstname">
+                  First Name <span className="star">*</span>
+                </label>
+                <input
+                  {...register("fname", {
+                    required: "This field is required",
+                    pattern: {
+                      value: /^[\p{L}\p{M}\s'-]+$/u,
+                      message: "Name must only contain letters",
+                    },
+                  })}
+                  className={errors.fname && "border-warning-red"}
+                  type="text"
+                  id="firstname"
+                  name="firstname"
+                  aria-describedby={
+                    errors.fname ? "firstname-error" : undefined
+                  }
+                  aria-invalid={errors.fname ? "true" : "false"}
+                />
+                {errors.fname && (
+                  <p id="firstname-error" className="error-message">
+                    {errors.fname.message}
+                  </p>
+                )}
               </div>
-              {errors.query && (
-                <p id="query-error" className="error-message flex flex-col">
-                  Please select a query type
-                </p>
-              )}
-            </fieldset>
-          </section>
 
-          <section id="message" className="mb-2 flex flex-col">
-            <label htmlFor="message">
-              Message <span className="star">*</span>
-            </label>
-            <textarea
-              {...register("message", { required: true })}
-              className={`h-36 resize-none overflow-hidden md:h-28 lg:h-24 ${
-                errors.message && "border-warning-red"
-              }`}
-              id="message"
-              name="message"
-              aria-describedby="message-error"
-              aria-invalid={errors.message ? "true" : "false"}
-            ></textarea>
-            {errors.message && (
-              <p id="message-error" className="error-message">
-                This field is required
-              </p>
-            )}
-          </section>
+              <div id="lastname-div" className="mb-2 flex flex-col">
+                <label htmlFor="lastname">
+                  Last Name <span className="star">*</span>
+                </label>
+                <input
+                  {...register("lastname", {
+                    required: "This field is required",
+                    pattern: {
+                      value: /^[\p{L}\p{M}\s'-]+$/u,
+                      message: "Name must only contain letters",
+                    },
+                  })}
+                  className={errors.lastname && "border-warning-red"}
+                  type="text"
+                  id="lastname"
+                  name="lastname"
+                  aria-describedby={
+                    errors.lastname ? "lastname-error" : undefined
+                  }
+                  aria-invalid={errors.lastname ? "true" : "false"}
+                />
+                {errors.lastname && (
+                  <p id="lastname-error" className="error-message">
+                    {errors.lastname.message}
+                  </p>
+                )}
+              </div>
+            </div>
 
-          <section id="finish" className="flex flex-col">
-            <div className="mb-3 mt-3 flex w-[90%] items-center">
-              <input
-                {...register("consent", { required: true })}
-                className="cursor-pointer checked:accent-medium-green"
-                type="checkbox"
-                id="consent"
-                name="consent"
-                aria-describedby="checkbox-error"
-                value="consent given"
-                aria-invalid={errors.consent ? "true" : "false"}
-              />
-              <label htmlFor="consent" className="mb-0 ml-3">
-                I consent to being contacted by the team{" "}
-                <span className="star">*</span>
+            <div id="email-section" className="mb-2 flex flex-col">
+              <label htmlFor="email">
+                Email Address <span className="star">*</span>
               </label>
-            </div>
-            <div>
-              {errors.consent && (
-                <p id="checkbox-error" className="error-message">
-                  To submit this form, please consent to being contacted
+              <input
+                {...register("email", {
+                  required: "This field is required",
+                  pattern: {
+                    value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
+                    message: "Please enter a valid email address",
+                  },
+                })}
+                className={errors.email && "border-warning-red"}
+                type="email"
+                id="email"
+                name="email"
+                placeholder="email#example.com"
+                aria-describedby={errors.email ? "email-error" : undefined}
+                aria-invalid={errors.email ? "true" : "false"}
+              ></input>
+              {errors.email && (
+                <p id="email-error" className="error-message">
+                  {errors.email.message}
                 </p>
               )}
             </div>
 
-            <input
-              type="submit"
-              id="submit-button"
-              name="submit-button"
-              value="Submit"
-              className="mt-4 cursor-pointer border-0 bg-medium-green py-3 font-bold text-white transition-all duration-150 ease-in-out hover:border-0 hover:bg-dark-gray focus:bg-dark-gray focus:outline-none"
-            />
-          </section>
-        </form>
+            <div id="query" className="mb-2">
+              <fieldset>
+                <legend>
+                  Query Type <span className="star">*</span>
+                </legend>
+                <div className="query-wrapper">
+                  <div className="query-field flex items-center">
+                    <input
+                      {...register("query", { required: true })}
+                      className="cursor-pointer"
+                      type="radio"
+                      id="general"
+                      name="query"
+                      value="general query"
+                      aria-describedby={
+                        errors.query ? "query-error" : undefined
+                      }
+                      aria-invalid={errors.query ? "true" : "false"}
+                    />
+                    <label htmlFor="general" className="mb-0 ml-2 text-base">
+                      General Enquiry
+                    </label>
+                  </div>
+                  <div className="query-field flex items-center">
+                    <input
+                      {...register("query")}
+                      className="cursor-pointer"
+                      type="radio"
+                      id="support"
+                      name="query"
+                      value="support request"
+                    />
+                    <label htmlFor="support" className="mb-0 ml-2 text-base">
+                      Support Request
+                    </label>
+                  </div>
+                </div>
+                {errors.query && (
+                  <p id="query-error" className="error-message flex flex-col">
+                    Please select a query type
+                  </p>
+                )}
+              </fieldset>
+            </div>
+
+            <div id="message-section" className="mb-2 flex flex-col">
+              <label htmlFor="message">
+                Message <span className="star">*</span>
+              </label>
+              <textarea
+                {...register("message", { required: true })}
+                className={`h-36 resize-none overflow-hidden md:h-28 lg:h-24 ${
+                  errors.message && "border-warning-red"
+                }`}
+                id="message"
+                name="message"
+                aria-describedby={errors.message ? "message-error" : undefined}
+                aria-invalid={errors.message ? "true" : "false"}
+              ></textarea>
+              {errors.message && (
+                <p id="message-error" className="error-message">
+                  This field is required
+                </p>
+              )}
+            </div>
+
+            <div id="finish" className="flex flex-col">
+              <div className="mb-3 mt-3 flex w-[90%] items-center">
+                <input
+                  {...register("consent", { required: true })}
+                  className="cursor-pointer checked:accent-medium-green"
+                  type="checkbox"
+                  id="consent"
+                  name="consent"
+                  aria-describedby={
+                    errors.consent ? "checkbox-error" : undefined
+                  }
+                  value="consent given"
+                  aria-invalid={errors.consent ? "true" : "false"}
+                />
+                <label htmlFor="consent" className="mb-0 ml-3">
+                  I consent to being contacted by the team{" "}
+                  <span className="star">*</span>
+                </label>
+              </div>
+              <div>
+                {errors.consent && (
+                  <p id="checkbox-error" className="error-message">
+                    To submit this form, please consent to being contacted
+                  </p>
+                )}
+              </div>
+
+              <input
+                type="submit"
+                id="submit-button"
+                name="submit-button"
+                value="Submit"
+                className="mt-4 cursor-pointer border-0 bg-medium-green py-3 font-bold text-white transition-all duration-150 ease-in-out hover:border-0 hover:bg-dark-gray focus:bg-dark-gray focus:outline-none"
+              />
+            </div>
+          </form>
+        </main>
       </div>
     </>
   );

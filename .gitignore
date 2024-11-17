@@ -13,6 +13,8 @@ README.md
 /build
 /design/ 
 style-guide.md
+.prettierrc
+
 
 # misc
 .DS_Store

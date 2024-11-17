@@ -33,9 +33,9 @@ code {
 }
 
 #grid-form {
-  min-height: 75vh;
+  min-height: 70vh;
   width: 90vw;
-  max-width: 600px;
+  max-width: 650px;
 }
 
 label,

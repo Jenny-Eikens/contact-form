@@ -46,7 +46,11 @@ export default function Form() {
     <>
       <div className="form-wrapper pb-2">
         {isSubmitted && (
-          <div className="success-message w-[85vw] max-w-[350px] justify-start rounded-[10px] bg-dark-gray p-4 pl-5 text-white">
+          <div
+            role="alert"
+            aria-live="polite"
+            className="success-message w-[85vw] max-w-[350px] justify-start rounded-[10px] bg-dark-gray p-4 pl-5 text-white"
+          >
             <span className="flex items-center">
               {successIcon}
               <h1 className="text-sm font-bold leading-7">Message Sent!</h1>
@@ -61,9 +65,9 @@ export default function Form() {
           noValidate
           onSubmit={handleSubmit(onSubmit)}
           id="grid-form"
-          className="grid gap-2 rounded-[10px] bg-white p-6"
+          className="grid gap-2 rounded-[10px] bg-white p-8"
         >
-          <h1 className="mb-2 text-2xl font-bold text-dark-gray">Contact Us</h1>
+          <h1 className="mb-2 text-3xl font-bold text-dark-gray">Contact Us</h1>
 
           <section id="name">
             <div id="firsname-div" className="mb-2 flex flex-col">
@@ -84,6 +88,7 @@ export default function Form() {
                 name="fname"
                 aria-describedby="firstname-error"
                 aria-invalid={errors.fname ? "true" : "false"}
+                autoFocus
               />
               {errors.fname && (
                 <p id="firstname-error" className="error-message">
@@ -240,7 +245,7 @@ export default function Form() {
               id="submit-button"
               name="submit-button"
               value="Submit"
-              className="mt-4 cursor-pointer border-0 bg-medium-green font-bold text-white transition-all duration-150 ease-in-out hover:border-0 hover:bg-dark-gray focus:bg-dark-gray focus:outline-none"
+              className="mt-4 cursor-pointer border-0 bg-medium-green py-3 font-bold text-white transition-all duration-150 ease-in-out hover:border-0 hover:bg-dark-gray focus:bg-dark-gray focus:outline-none"
             />
           </section>
         </form>

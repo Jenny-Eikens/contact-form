@@ -2,7 +2,7 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { useState } from "react";
 
 type Inputs = {
-  fname: string;
+  firstname: string;
   lastname: string;
   email: string;
   query: any;
@@ -78,25 +78,25 @@ export default function Form() {
                   First Name <span className="star">*</span>
                 </label>
                 <input
-                  {...register("fname", {
+                  {...register("firstname", {
                     required: "This field is required",
                     pattern: {
                       value: /^[\p{L}\p{M}\s'-]+$/u,
                       message: "Name must only contain letters",
                     },
                   })}
-                  className={errors.fname && "border-warning-red"}
+                  className={errors.firstname && "border-warning-red"}
                   type="text"
                   id="firstname"
                   name="firstname"
                   aria-describedby={
-                    errors.fname ? "firstname-error" : undefined
+                    errors.firstname ? "firstname-error" : undefined
                   }
-                  aria-invalid={errors.fname ? "true" : "false"}
+                  aria-invalid={errors.firstname ? "true" : "false"}
                 />
-                {errors.fname && (
+                {errors.firstname && (
                   <p id="firstname-error" className="error-message">
-                    {errors.fname.message}
+                    {errors.firstname.message}
                   </p>
                 )}
               </div>

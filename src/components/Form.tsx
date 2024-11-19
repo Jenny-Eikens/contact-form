@@ -16,7 +16,16 @@ export default function Form() {
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm<Inputs>();
+  } = useForm<Inputs>({
+    defaultValues: {
+      firstname: undefined,
+      lastname: undefined,
+      email: undefined,
+      query: undefined,
+      message: undefined,
+      consent: undefined,
+    },
+  });
 
   const onSubmit: SubmitHandler<Inputs> = (data: any) => {
     console.log(data);
@@ -73,7 +82,7 @@ export default function Form() {
             </h1>
 
             <div id="name">
-              <div id="firsname-div" className="mb-2 flex flex-col">
+              <div id="firstname-div" className="mb-2 flex flex-col">
                 <label htmlFor="firstname">
                   First Name <span className="star">*</span>
                 </label>

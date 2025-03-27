@@ -88,6 +88,6 @@ I decided against using custom svgs in place of regular radio buttons / checkbox
 
 ## Author
 
-- Website - [Jennifer Eikens](https://jenny-eikens.github.io/portfolio-page/#projects)
+- Website - [Jennifer Eikens](https://jennifereikens.com)
 - Frontend Mentor - [@Jenny-Eikens](https://www.frontendmentor.io/profile/Jenny-Eikens)
 - GitHub - [Jenny-Eikens](https://github.com/Jenny-Eikens)
